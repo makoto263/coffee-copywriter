@@ -26,7 +26,7 @@
 ---
 
 ## 4. loss
-학습 모니터링 결과, Step 600(Epoch 2 종료 시점) 이후 Training Loss는 0.6 대까지 지속적으로 하락한 반면, Validation Loss는 1.9 대까지 상승하는 전형적인 과적합(Overfitting) 현상이 확인되었다. 최종 추론 검증 결과, 과적합이 심화되기 전인 Step 300-600 구간(Epoch 1~2)에서 생성된 체크포인트 모델이 하이퍼파라미터 조정을 통해 가장 자연스럽고 감성적인 광고 copy를 출력함을 확인하였다. 따라서, 과적합이 진행된 최종 Step 900의 가중치를 사용하는 대신, Validation Loss가 최적의 균형을 이루었던 Epoch 1.5~2 시점의 모델 가중치를 최종 성과물(GGUF)로 채택 및 배포(Ollama 실행)하는 방식으로 과적합 문제에 대응하였다.
+학습 모니터링 결과, Step 600(Epoch 2 종료 시점) 이후 Training Loss는 0.6 대까지 지속적으로 하락한 반면, Validation Loss는 1.9 대까지 상승하는 전형적인 과적합(Overfitting) 현상이 확인되었다. 최종 추론 검증 결과, 과적합이 심화되기 전인 Step 300 부터 600 구간(Epoch 1~2)에서 생성된 체크포인트 모델이 하이퍼파라미터 조정을 통해 가장 자연스럽고 감성적인 광고 copy를 출력함을 확인하였다. 따라서, 과적합이 진행된 최종 Step 900의 가중치를 사용하는 대신, Validation Loss가 최적의 균형을 이루었던 Epoch 1.5~2 시점의 모델 가중치를 최종 성과물(GGUF)로 채택 및 배포(Ollama 실행)하는 방식으로 과적합 문제에 대응하였다.
 
 <img width="334" height="323" alt="スクリーンショット 2026-06-19 20 52 58" src="https://github.com/user-attachments/assets/d125df2b-f926-4562-871b-75afd988c538" />
 
