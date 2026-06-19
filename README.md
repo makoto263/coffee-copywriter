@@ -25,15 +25,9 @@
 
 ---
 
-## 4. 설치 및 실행 방법 (Installation & Usage)
+## 4. 베이스 vs 파인튜닝
+* **기본 베이스 모델 (LoRA 미적용)**: 대화형 Instruct 모델의 특성이 남아있어, copy를 직접 출력하기 전에 *"Here are some taglines..."*와 같은 불필요한 서두(Intro)를 출력하거나 글머리 기호(*)를 사용하여 나열하는 경향을 볼 수 있다. 이로 인해 제한된 max_new_tokens(45자) 내에서 정답을 완성하지 못하고 문장이 중간에 끊기는 한계가 명확히 드러난다.
+* **파인튜닝 모델 (LoRA 적용)**:서두나 설명문을 완전히 배제하고, 오직 1문장의 완성된 광고 copy만을 다이렉트로 생성하고 있다. 특히 사용자의 감정 상태(공포, 짜증, 분노 등)를 정확히 포착하여 브랜드 메시지와 결부시키는 능력이 압도적으로 향상되었으며, 제한된 토큰 내에서 끊김 없이 완벽한 문장을 종결지음으로써 '카피라이터 페르소나'가 성공적으로 구축되었음을 증명하고 있다.
 
-### 1) Colab / 학습 및 추론 절차
-1. 본 리ポジトリ의 `.ipynb` 파일을 Google Colab에 업로드합니다.
-2. 의존성 라이브러리(`unsloth`, `transformers`, `trl`)를 설치합니다.
-3. 데이터셋을 로드하고 파인튜닝 코드를 순차적으로 실행합니다.
-
-### 2) 로컬 환경 (Ollama) 실행 방법
-1. 에스포트된 `gemma2-2b-it.Q4_K_M.gguf` 파일과 `Modelfile`을 동일한 디렉토리에 위치시킵니다.
-2. 터미널을 열고 해당 폴더로 이동 후 아래 명령어를 실행하여 모델을 생성합니다:
-```bash
-   ollama create coffee-ai -f ./Modelfile
+<img width="814" height="654" alt="スクリーンショット 2026-06-18 19 09 28" src="https://github.com/user-attachments/assets/b9062eaa-4a84-4eea-87b6-2a59dfc534a7" />
+<img width="1157" height="411" alt="スクリーンショット 2026-06-19 20 40 34" src="https://github.com/user-attachments/assets/30c3e620-8585-4df6-b95a-1b583dcc9c40" />
