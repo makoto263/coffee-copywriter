@@ -25,11 +25,18 @@
 
 ---
 
+## 4. loss
+학습 모니터링 결과, Step 600(Epoch 2 종료 시점) 이후 Training Loss(청색)는 0.6 대까지 지속적으로 하락한 반면, Validation Loss(적색)는 1.9 대까지 상승하는 전형적인 과적합(Overfitting) 현상이 확인되었다. 최종 추론 검증 결과, 과적합이 심화되기 전인 Step 300~600 구간(Epoch 1~2)에서 생성된 체크포인트 모델이 하이퍼파라미터(Repetition Penalty, Temperature) 조정을 통해 가장 자연스럽고 감성적인 광고 copy를 출력함을 확인하였다. 따라서, 과적합이 진행된 최종 Step 900의 가중치를 사용하는 대신, Validation Loss가 최적의 균형을 이루었던 Epoch 1.5~2 시점의 모델 가중치를 최종 성과물(GGUF)로 채택 및 배포(Ollama 실행)하는 방식으로 과적합 문제에 대응하였다.
+
+<img width="334" height="323" alt="スクリーンショット 2026-06-19 20 52 58" src="https://github.com/user-attachments/assets/d125df2b-f926-4562-871b-75afd988c538" />
+
+<img width="850" height="552" alt="Unknown" src="https://github.com/user-attachments/assets/bd2bd4a2-4ece-4fc6-98d6-0b13d1933027" />
+
+---
+
 ## 4. 베이스 vs 파인튜닝
 * **기본 베이스 모델 (LoRA 미적용)**: 대화형 Instruct 모델의 특성이 남아있어, copy를 직접 출력하기 전에 *"Here are some taglines..."*와 같은 불필요한 서두(Intro)를 출력하거나 글머리 기호(*)를 사용하여 나열하는 경향을 볼 수 있다. 이로 인해 제한된 max_new_tokens(45자) 내에서 정답을 완성하지 못하고 문장이 중간에 끊기는 한계가 명확히 드러난다.
 * **파인튜닝 모델 (LoRA 적용)**:서두나 설명문을 완전히 배제하고, 오직 1문장의 완성된 광고 copy만을 다이렉트로 생성하고 있다. 특히 사용자의 감정 상태(공포, 짜증, 분노 등)를 정확히 포착하여 브랜드 메시지와 결부시키는 능력이 압도적으로 향상되었으며, 제한된 토큰 내에서 끊김 없이 완벽한 문장을 종결지음으로써 '카피라이터 페르소나'가 성공적으로 구축되었음을 증명하고 있다.
 
 <img width="1157" height="555" alt="スクリーンショット 2026-06-19 20 40 21" src="https://github.com/user-attachments/assets/d9b76b49-8fc4-47f6-b6f0-e06eb3d6a1d5" />
 <img width="1157" height="411" alt="スクリーンショット 2026-06-19 20 40 34" src="https://github.com/user-attachments/assets/30c3e620-8585-4df6-b95a-1b583dcc9c40" />
-
-
